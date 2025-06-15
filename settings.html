@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Literacy Wireframes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+
+        .wireframe-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        .phone-frame {
+            width: 320px;
+            height: 600px;
+            border: 3px solid #333;
+            border-radius: 25px;
+            background: white;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow-y: auto;
+        }
+
+        .status-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .header h2 {
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .back-btn,
+        .settings-btn,
+        .add-btn,
+        .menu-btn {
+            width: 30px;
+            height: 30px;
+            border: 1px solid #ddd;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            cursor: pointer;
+        }
+
+        .add-btn {
+            background: #2196F3;
+            color: white;
+            border: none;
+        }
+
+        .menu-btn {
+            background: #FF9800;
+            color: white;
+            border: none;
+        }
+
+        .balance-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .balance-amount {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .balance-label {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-bottom: 15px;
+        }
+
+        .balance-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .balance-btn {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 8px;
+            border-radius: 8px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .stat-card {
+            background: white;
+            border: 1px solid #eee;
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-amount {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .stat-amount.income {
+            color: #4CAF50;
+        }
+
+        .stat-amount.expense {
+            color: #F44336;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .transaction-item {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            background: white;
+        }
+
+        .transaction-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            margin-right: 12px;
+        }
+
+        .transaction-icon.expense {
+            background: #FFEBEE;
+            color: #F44336;
+        }
+
+        .transaction-icon.income {
+            background: #E8F5E8;
+            color: #4CAF50;
+        }
+
+        .transaction-content {
+            flex: 1;
+        }
+
+        .transaction-title {
+            font-weight: bold;
+            margin-bottom: 2px;
+        }
+
+        .transaction-details {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .transaction-amount {
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .transaction-amount.expense {
+            color: #F44336;
+        }
+
+        .transaction-amount.income {
+            color: #4CAF50;
+        }
+
+        .category-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            background: white;
+        }
+
+        .category-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .category-icon {
+            width: 35px;
+            height: 35px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            margin-right: 12px;
+            background: #f5f5f5;
+        }
+
+        .category-name {
+            font-weight: bold;
+            margin-bottom: 2px;
+        }
+
+        .category-budget {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .category-spent {
+            text-align: right;
+        }
+
+        .progress-bar {
+            width: 60px;
+            height: 6px;
+            background: #e0e0e0;
+            border-radius: 3px;
+            overflow: hidden;
+            margin-top: 4px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #4CAF50;
+            transition: width 0.3s;
+        }
+
+        .progress-fill.warning {
+            background: #FF9800;
+        }
+
+        .progress-fill.danger {
+            background: #F44336;
+        }
+
+        .goal-card {
+            background: white;
+            border: 1px solid #eee;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .goal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .goal-title {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .goal-target {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .goal-progress {
+            margin-bottom: 10px;
+        }
+
+        .goal-amounts {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-sizing: border-box;
+        }
+
+        .form-textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-sizing: border-box;
+            height: 80px;
+            resize: vertical;
+        }
+
+        .form-select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-sizing: border-box;
+        }
+
+        .btn-primary {
+            width: 100%;
+            padding: 12px;
+            background: #2196F3;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .btn-secondary {
+            width: 100%;
+            padding: 12px;
+            background: white;
+            color: #2196F3;
+            border: 1px solid #2196F3;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .btn-expense {
+            width: 48%;
+            padding: 12px;
+            background: #F44336;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .btn-income {
+            width: 48%;
+            padding: 12px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .quick-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .quick-action {
+            background: white;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 12px;
+            text-align: center;
+            cursor: pointer;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .quick-action-icon {
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+
+        .quick-action-text {
+            font-size: 10px;
+            font-weight: bold;
+        }
+
+        .filter-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 15px;
+            overflow-x: auto;
+        }
+
+        .tab {
+            padding: 8px 16px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            background: white;
+            font-size: 12px;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .tab.active {
+            background: #2196F3;
+            color: white;
+            border-color: #2196F3;
+        }
+
+        .bottom-nav {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: #f8f8f8;
+            border-top: 1px solid #eee;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .nav-item {
+            text-align: center;
+            font-size: 10px;
+            color: #666;
+        }
+
+        .nav-item.active {
+            color: #2196F3;
+        }
+
+        .page-title {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .analytics-card {
+            background: white;
+            border: 1px solid #eee;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .chart-placeholder {
+            width: 100%;
+            height: 120px;
+            background: #f8f8f8;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 12px;
+            margin: 10px 0;
+        }
+
+        .pie-chart {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: conic-gradient(#4CAF50 0deg 144deg, #2196F3 144deg 216deg, #FF9800 216deg 288deg, #F44336 288deg 360deg);
+            margin: 0 auto 10px;
+        }
+
+        .legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            font-size: 10px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .legend-color {
+            width: 10px;
+            height: 10px;
+            border-radius: 2px;
+        }
+
+        .parent-info {
+            background: #E3F2FD;
+            border: 1px solid #2196F3;
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 15px;
+            font-size: 12px;
+            color: #1976D2;
+        }
+
+        .toggle-switch {
+            width: 40px;
+            height: 20px;
+            background: #ccc;
+            border-radius: 10px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .toggle-switch.active {
+            background: #2196F3;
+        }
+
+        .toggle-switch::after {
+            content: '';
+            width: 16px;
+            height: 16px;
+            background: white;
+            border-radius: 50%;
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            transition: 0.3s;
+        }
+
+        .toggle-switch.active::after {
+            left: 22px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 style="text-align: center; color: #333;">Financial Literacy Wireframes</h1>
+
+    <div class="wireframe-container">
+
+
+        <!-- Page 10: Settings & Connections -->
+        <div class="phone-frame">
+            <div class="status-bar">
+                <span>9:41</span>
+                <span>📶 📶 🔋</span>
+            </div>
+            <div class="header">
+                <div class="back-btn">←</div>
+                <h2>Settings</h2>
+                <div class="settings-btn">⚙️</div>
+            </div>
+
+            <div
+                style="background: #E8F5E8; border: 1px solid #4CAF50; border-radius: 8px; padding: 10px; margin-bottom: 15px; font-size: 12px; color: #2E7D32;">
+                👨‍👩‍👧‍👦 Connected to Smith Family Group<br>
+                🏫 Not connected to any classroom
+            </div>
+
+            <div class="analytics-card">
+                <div style="font-weight: bold; margin-bottom: 10px;">🏫 Join Classroom</div>
+                <div class="form-group">
+                    <label class="form-label">Select School</label>
+                    <select class="form-select">
+                        <option>Select your school...</option>
+                        <option>Lincoln High School</option>
+                        <option>Washington Middle School</option>
+                        <option>Roosevelt Elementary</option>
+                        <option>Jefferson Academy</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Select Classroom</label>
+                    <select class="form-select">
+                        <option>Select classroom...</option>
+                        <option>Mrs. Johnson - Grade 9A</option>
+                        <option>Mr. Smith - Grade 9B</option>
+                        <option>Ms. Davis - Grade 9C</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Classroom Key (Optional)</label>
+                    <input type="text" class="form-input" placeholder="Enter classroom key if provided">
+                </div>
+                <button class="btn-primary">Request to Join</button>
+            </div>
+
+            <div class="analytics-card">
+                <div style="font-weight: bold; margin-bottom: 10px;">👨‍👩‍👧‍👦 Family Connection</div>
+                <div style="font-size: 12px; color: #4CAF50; margin-bottom: 10px;">
+                    ✅ Connected to: Smith Family Group<br>
+                    Family Head: john.smith@email.com
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Connect to Different Family</label>
+                    <input type="email" class="form-input" placeholder="Enter family head email">
+                </div>
+                <button class="btn-secondary">Request New Connection</button>
+                <button
+                    style="width: 100%; padding: 8px; background: #F44336; color: white; border: none; border-radius: 6px; font-size: 12px; margin-top: 8px;">Leave
+                    Current Family</button>
+            </div>
+
+            <div class="analytics-card">
+                <div style="font-weight: bold; margin-bottom: 10px;">📱 App Settings</div>
+                <div style="margin-bottom: 8px;">
+                    <div
+                        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                        <span style="font-size: 14px;">Push Notifications</span>
+                        <div class="toggle-switch active"></div>
+                    </div>
+                    <div
+                        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                        <span style="font-size: 14px;">Spending Alerts</span>
+                        <div class="toggle-switch active"></div>
+                    </div>
+                    <div
+                        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                        <span style="font-size: 14px;">Goal Reminders</span>
+                        <div class="toggle-switch active"></div>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-size: 14px;">Weekly Reports</span>
+                        <div class="toggle-switch"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="analytics-card">
+                <div style="font-weight: bold; margin-bottom: 10px;">🔒 Privacy & Security</div>
+                <button class="btn-secondary" style="margin-bottom: 8px;">Export My Data</button>
+                <button class="btn-secondary" style="margin-bottom: 8px;">Reset All Categories</button>
+                <button
+                    style="width: 100%; padding: 10px; background: #F44336; color: white; border: none; border-radius: 8px; font-size: 12px;">Delete
+                    Account</button>
+            </div>
+
+            <div class="page-title">Settings & Connections</div>
+        </div>
+
+        <!-- Page 11: Classroom Connection Request -->
+        <div class="phone-frame">
+            <div class="status-bar">
+                <span>9:41</span>
+                <span>📶 📶 🔋</span>
+            </div>
+            <div class="header">
+                <div class="back-btn">←</div>
+                <h2>Join Classroom</h2>
+                <div class="settings-btn">🏫</div>
+            </div>
+
+            <div style="text-align: center; margin-bottom: 20px;">
+                <div style="font-size: 48px; margin-bottom: 10px;">🏫</div>
+                <div style="font-size: 18px; font-weight: bold; margin-bottom: 5px;">Connect to Your Classroom</div>
+                <div style="font-size: 12px; color: #666;">Join your teacher's financial literacy program</div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Search Schools</label>
+                <input type="text" class="form-input" placeholder="Type your school name...">
+            </div>
+
+            <div style="margin-bottom: 15px;">
+                <div style="font-weight: bold; margin-bottom: 8px; font-size: 14px;">📍 Nearby Schools</div>
+
+                <div
+                    style="border: 1px solid #eee; border-radius: 8px; padding: 12px; margin-bottom: 8px; cursor: pointer;">
+                    <div style="font-weight: bold;">Lincoln High School</div>
+                    <div style="font-size: 12px; color: #666;">0.5 miles away • 1,200 students</div>
+                </div>
+
+                <div
+                    style="border: 2px solid #2196F3; border-radius: 8px; padding: 12px; margin-bottom: 8px; cursor: pointer; background: #F3F9FF;">
+                    <div style="font-weight: bold;">Washington Middle School</div>
+                    <div style="font-size: 12px; color: #666;">1.2 miles away • 800 students</div>
+                    <div style="font-size: 10px; color: #2196F3; margin-top: 4px;">✓ Selected</div>
+                </div>
+
+                <div style="border: 1px solid #eee; border-radius: 8px; padding: 12px; cursor: pointer;">
+                    <div style="font-weight: bold;">Roosevelt Elementary</div>
+                    <div style="font-size: 12px; color: #666;">2.1 miles away • 500 students</div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Available Classrooms</label>
+                <select class="form-select">
+                    <option>Select your teacher...</option>
+                    <option>Mrs. Johnson - Grade 9A (Financial Literacy)</option>
+                    <option>Mr. Smith - Grade 9B (Math & Finance)</option>
+                    <option>Ms. Davis - Grade 9C (Business Studies)</option>
+                    <option>Mr. Wilson - Grade 8A (Money Management)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Classroom Key (if provided)</label>
+                <input type="text" class="form-input" placeholder="Enter 6-digit classroom key">
+            </div>
+
+            <div class="analytics-card">
+                <div style="font-weight: bold; margin-bottom: 8px;">📋 What happens next?</div>
+                <div style="font-size: 12px; color: #666; line-height: 1.4;">
+                    1. Your request will be sent to the teacher<br>
+                    2. Teacher will review and approve your request<br>
+                    3. You'll get access to classroom activities<br>
+                    4. Your progress will be visible to your teacher
+                </div>
+            </div>
+
+            <button class="btn-primary">Send Join Request</button>
+            <button class="btn-secondary">Enter Classroom Key Instead</button>
+
+            <div class="page-title">Classroom Connection</div>
+        </div>
+
+        <!-- Page 12: Family Connection Request -->
+        <div class="phone-frame">
+            <div class="status-bar">
+                <span>9:41</span>
+                <span>📶 📶 🔋</span>
+            </div>
+            <div class="header">
+                <div class="back-btn">←</div>
+                <h2>Family Connection</h2>
+                <div class="settings-btn">👨‍👩‍👧‍👦</div>
+            </div>
+
+            <div style="text-align: center; margin-bottom: 20px;">
+                <div style="font-size: 48px; margin-bottom: 10px;">👨‍👩‍👧‍👦</div>
+                <div style="font-size: 18px; font-weight: bold; margin-bottom: 5px;">Connect to Family</div>
+                <div style="font-size: 12px; color: #666;">Join your family's financial monitoring group</div>
+            </div>
+
+            <div
+                style="background: #FFF3E0; border: 1px solid #FF9800; border-radius: 8px; padding: 10px; margin-bottom: 15px; font-size: 12px; color: #F57C00;">
+                ⚠️ Currently connected to: Smith Family Group<br>
+                To join a different family, you'll need to leave your current group first.
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Family Head Email</label>
+                <input type="email" class="form-input" placeholder="parent@email.com">
+                <div style="font-size: 12px; color: #666; margin-top: 4px;">
+                    Enter the email address of your parent or guardian
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Your Relationship</label>
+                <select class="form-select">
+                    <option>Son</option>
+                    <option>Daughter</option>
+                    <option>Nephew</option>
+                    <option>Niece</option>
+                    <option>Grandchild</option>
+                    <option>Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Personal Message (Optional)</label>
+                <textarea class="form-textarea"
+                    placeholder="Hi Mom/Dad, please approve my request to join our family financial group."></textarea>
+            </div>
+
+            <div class="analytics-card">
+                <div style="font-weight: bold; margin-bottom: 8px;">🔒 Privacy Information</div>
+                <div style="font-size: 12px; color: #666; line-height: 1.4;">
+                    • Family members can view your spending summary<br>
+                    • Individual transaction details remain private<br>
+                    • Parents can set goals and send money<br>
+                    • You can leave the family group anytime
+                </div>
+            </div>
+
+            <div class="analytics-card">
+                <div style="font-weight: bold; margin-bottom: 8px;">📨 Request Process</div>
+                <div style="font-size: 12px; color: #666; line-height: 1.4;">
+                    1. Email sent to family head for approval<br>
+                    2. Family head receives notification<br>
+                    3. Once approved, you'll join the family group<br>
+                    4. You'll get access to family financial features
+                </div>
+            </div>
+
+            <button class="btn-primary">Send Family Request</button>
+
+        </div>
+    </div>
+</body>
+
+</html>
